@@ -524,7 +524,9 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
                     itemLink: projectItem.link,
                     progressAmount: coinAmount.toString(),
                     currentProgress: normaliseCoins(project.progressInCopper),
-                    goal: cost.toString()
+                    goal: cost.toString(),
+                    copperProgress: project.progressInCopper,
+                    copperTotal: getCopper(cost)
                 }),
                 speaker: { alias: crafterActor.name },
             });
@@ -557,7 +559,9 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
                     itemLink: projectItem.link,
                     progressAmount: coinAmount.toString(),
                     currentProgress: normaliseCoins(project.progressInCopper),
-                    goal: cost.toString()
+                    goal: cost.toString(),
+                    copperProgress: project.progressInCopper,
+                    copperTotal: getCopper(cost)
                 }),
                 speaker: { alias: crafterActor.name },
             });
@@ -572,4 +576,8 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
             });
         }
     }
+}
+
+export function getCopper(coin) {
+    return coin.pp * 1000 + coin.gp * 100 + coin.sp * 10 + coin.cp;
 }
