@@ -209,7 +209,7 @@ export async function craftAProject(crafterActor, itemDetails, skipDialog = true
  * @param {ActorPF2e} details.projectOwner The actor who owns the project. Usually the same as the crafterActor, but not always! 
  */
 async function rollCraftAProject(crafterActor, project, details) {
-    const actionName = localise("CraftWindow.Title", { length: details.duration.charAt(0).toUpperCase().concat(details.duration.substring(1).toLowerCase())});
+    const actionName = localise("CraftWindow.TimedTitle", { length: details.duration.charAt(0).toUpperCase().concat(details.duration.substring(1).toLowerCase())});
     let skillName = "crafting";
     const settingsRollOptions = [];
 

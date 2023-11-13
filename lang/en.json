@@ -31,7 +31,8 @@
             "DoesNotHaveProjectToProgress": "{name} does not have project {projectUUID} to progress!",
             "InputMeaningfulCost": "Please input a meaningful cost (> 0 cp) for Craft a Project!",
             "CannotPay": "{name} cannot afford to start the project!",
-            "Title": "Craft A Project ({length})",
+            "Title": "Craft A Project",
+            "TimedTitle": "Craft A Project ({length})",
             "CraftingDuration": {
                 "Title": "Crafting Duration:",
                 "Hour": "Hour",
