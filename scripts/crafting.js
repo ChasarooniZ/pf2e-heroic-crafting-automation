@@ -167,7 +167,7 @@ export async function craftAProject(crafterActor, itemDetails, skipDialog = true
     if (project.progressInCopper + dialogResult.spendingAmount.copperValue >= cost.copperValue) {
         ChatMessage.create({
             user: game.user.id,
-            content: localise("CraftWindow.Progress.SkipCheck", { name: crafterActor.name, itemName: projectItem.name }),
+            content: localise("CraftWindow.Progress.SkipCheck", { name: crafterActor.name, itemLink: projectItem.link }),
             speaker: { alias: crafterActor.name },
         });
         progressProject(projectOwner, project.ID, true, dialogResult.spendingAmount);
@@ -504,13 +504,13 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
             if (result === "permissionLacking") {
                 ChatMessage.create({
                     user: game.user.id,
-                    content: localise("CraftWindow.Progress.Finish", { name: crafterActor.name, batchSize: project.batchSize, itemName: projectItem.name }).concat(localise("CraftWindow.Progress.LacksPermissionToFinish", { name: crafterActor.name, playerName: game.user.name })),
+                    content: localise("CraftWindow.Progress.Finish", { name: crafterActor.name, batchSize: project.batchSize, itemLink: projectItem.link }).concat(localise("CraftWindow.Progress.LacksPermissionToFinish", { name: crafterActor.name, playerName: game.user.name })),
                     speaker: { alias: crafterActor.name },
                 });
             } else {
                 ChatMessage.create({
                     user: game.user.id,
-                    content: localise("CraftWindow.Progress.Finish", { name: crafterActor.name, batchSize: project.batchSize, itemName: projectItem.name }),
+                    content: localise("CraftWindow.Progress.Finish", { name: crafterActor.name, batchSize: project.batchSize, itemLink: projectItem.link }),
                     speaker: { alias: crafterActor.name },
                 });
                 await abandonProject(crafterActor, projectUUID);
@@ -521,7 +521,7 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
                 content: localise("CraftWindow.Progress.Progress", {
                     name: crafterActor.name,
                     batchSize: project.batchSize,
-                    itemName: projectItem.name,
+                    itemLink: projectItem.link,
                     progressAmount: coinAmount.toString(),
                     currentProgress: normaliseCoins(project.progressInCopper),
                     goal: cost.toString()
@@ -544,7 +544,7 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
         if (project.progressInCopper <= 0) {
             ChatMessage.create({
                 user: game.user.id,
-                content: localise("CraftWindow.Progress.FatalSetback", { name: crafterActor.name, batchSize: project.batchSize, itemName: projectItem.name }),
+                content: localise("CraftWindow.Progress.FatalSetback", { name: crafterActor.name, batchSize: project.batchSize, itemLink: projectItem.link }),
                 speaker: { alias: crafterActor.name },
             });
             await abandonProject(crafterActor, projectUUID);
@@ -554,7 +554,7 @@ export async function progressProject(crafterActor, projectUUID, hasProgressed, 
                 content: localise("CraftWindow.Progress.Progress", {
                     name: crafterActor.name,
                     batchSize: project.batchSize,
-                    itemName: projectItem.name,
+                    itemLink: projectItem.link,
                     progressAmount: coinAmount.toString(),
                     currentProgress: normaliseCoins(project.progressInCopper),
                     goal: cost.toString()
