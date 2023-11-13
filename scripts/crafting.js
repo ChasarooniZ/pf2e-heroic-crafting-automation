@@ -242,7 +242,11 @@ async function rollCraftAProject(crafterActor, project, details) {
     const extraRollNotes = [];
     {
         extraRollNotes.push({
-            "outcome": ["success", "criticalSuccess"],
+            "outcome": ["criticalSuccess"],
+            "text": localise("CraftWindow.Roll.CriticalSuccess")
+        });
+        extraRollNotes.push({
+            "outcome": ["success"],
             "text": localise("CraftWindow.Roll.Success")
         });
         extraRollNotes.push({
@@ -312,7 +316,10 @@ async function rollCraftAProject(crafterActor, project, details) {
                     actor: details.projectOwner.id
                 };
 
-                if (outcome === "success" || outcome === "criticalSuccess") {
+                if (outcome === "criticalSuccess") {
+                    craftDetails.progress = true;
+                    craftDetails.progressMade = details.craftingMaterials.scale(3);
+                } else if (outcome === "success") {
                     craftDetails.progress = true;
                     craftDetails.progressMade = details.craftingMaterials.scale(2);
                 } else if (outcome === "failure") {
